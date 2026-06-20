@@ -36,3 +36,24 @@ module.exports = {
 
     }
 };
+
+module.exports = {
+    name: 'guildMemberAdd',
+    async execute(member) {
+
+        // Find the Unverified role
+        const unverified = member.guild.roles.cache.find(r => r.name === "Unverified");
+        if (!unverified) {
+            console.log("Unverified role not found.");
+            return;
+        }
+
+        // Add the Unverified role to the new member
+        try {
+            await member.roles.add(unverified);
+            console.log(`Assigned Unverified to ${member.user.tag}`);
+        } catch (err) {
+            console.error("Failed to assign Unverified role:", err);
+        }
+    }
+};
