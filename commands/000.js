@@ -26,20 +26,20 @@ module.exports = {
         const service = interaction.options.getString('service');
         const details = interaction.options.getString('details');
 
-        // Map service → your exact role names
-        const serviceRoles = {
-            police: "Victorian Police Force",
-            fire: "Fire Rescue Victoria",
-            ambulance: "Paramedics Victoria",
-            vicroads: "VicRoads"
+        // EXACT on-duty role names
+        const dutyRoles = {
+            police: "On Duty - Victorian Police Force",
+            fire: "On Duty - Fire Rescue Victoria",
+            ambulance: "On Duty - Paramedics Victoria",
+            vicroads: "On Duty - VicRoads"
         };
 
-        const roleName = serviceRoles[service];
+        const roleName = dutyRoles[service];
         const role = interaction.guild.roles.cache.find(r => r.name === roleName);
 
         if (!role) {
             return interaction.reply({
-                content: `Role **${roleName}** not found. Please create it.`,
+                content: `On-duty role **${roleName}** not found. Please create it.`,
                 ephemeral: true
             });
         }
@@ -50,7 +50,7 @@ module.exports = {
             .setColor('#ff0000')
             .addFields(
                 { name: 'Caller', value: `${interaction.user}` },
-                { name: 'Service Requested', value: roleName },
+                { name: 'Service Requested', value: roleName.replace("On Duty - ", "") },
                 { name: 'Location', value: `${interaction.channel}` },
                 { name: 'Details', value: details }
             )
