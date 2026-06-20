@@ -12,7 +12,7 @@ module.exports = {
                     { name: 'Police', value: 'police' },
                     { name: 'Fire', value: 'fire' },
                     { name: 'Ambulance', value: 'ambulance' },
-                    { name: 'VicRoads (DOT)', value: 'vicroads' }
+                    { name: 'VicRoads', value: 'vicroads' }
                 )
         )
         .addStringOption(option =>
